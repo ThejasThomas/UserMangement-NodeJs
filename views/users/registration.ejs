@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            document.querySelectorAll(".error-message").forEach(function (el) {
+                el.style.display = 'none';
+            });
+
+            const name = document.forms["registerForm"]["name"].value;
+            if (name.length < 8) {
+                document.getElementById("nameError").style.display = 'block';
+                isValid = false;
+            }
+
+            const email = document.forms["registerForm"]["email"].value;
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").style.display = 'block';
+                isValid = false;
+            }
+
+            const mno = document.forms["registerForm"]["mno"].value;
+            const mnoPattern = /^[0-9]{10}$/;
+            if (!mnoPattern.test(mno)) {
+                document.getElementById("mnoError").style.display = 'block';
+                isValid = false;
+            }
+
+            const password = document.forms["registerForm"]["password"].value;
+            const passwordPattern = /^[a-zA-Z0-9]+$/;
+            if (!passwordPattern.test(password)) {
+                document.getElementById("passwordError").style.display = 'block';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="registration-container">
+        <h1>Sign Up</h1>
+        
+        <form name="registerForm" action="/register" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Enter Name" required>
+                <span id="nameError" class="error-message">Name must be at least 8 characters long.</span>
+            </div>
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Enter Email" required>
+                <span id="emailError" class="error-message">Please enter a valid email address.</span>
+            </div>
+            <div class="input-group">
+                <input type="text" name="mno" placeholder="Enter Mobile" required>
+                <span id="mnoError" class="error-message">Phone number must be exactly 10 digits long.</span>
+            </div>
+            <div class="input-group">
+                <input type="file" name="image" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Enter Password" required>
+                <span id="passwordError" class="error-message">Password must contain only letters and numbers.</span>
+            </div>
+            <input type="submit" value="Register" class="btn">
+        </form>
+        <a href="/login">Log In</a>
+
+        <% if (typeof message !== 'undefined') { %>
+            <p class="success-message"><%= message %></p>
+        <% } %>
+    </div>
+    <script>
+        if (window.history.replaceState) {
+            const url = new URL(window.location);
+            url.searchParams.delete('message'); 
+            window.history.replaceState(null, '', url);
+        }
+    </script>
+</body>
+</html>

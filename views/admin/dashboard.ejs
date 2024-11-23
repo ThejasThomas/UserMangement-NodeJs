@@ -1,0 +1,70 @@
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <li><a class="link" href="/admin/home">🏠 Home</a></li>
+                    <li><a class="link" href="/admin/new-user">➕ Add New User</a></li>
+                    <li><a class="link" href="/admin/logout">🚪 Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Dashboard</h1>
+            </header>
+            <form action="" method="post">
+                <input type="text" name="searchItem" placeholder="Search users...">
+                <button type="submit">Search</button>
+            </form>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <%
+                    if(users.length > 0){
+                        for(let i = 0; i < users.length; i++){
+                    %>
+                    <tr>
+                        <td><%= users[i].name %></td>
+                        <td><%= users[i].email %></td>
+                        <td><%= users[i].mobile %></td>
+                        <td><img src="/userImages/<%= users[i].image %>" alt="<%= users[i].image %>"></td>
+                        <td>
+                            <a href="/admin/edit-user?id=<%= users[i]._id %>">Edit</a>
+                        </td>
+                        <td>
+                            <a href="#" onclick="confirmDelete('<%= users[i]._id %>')">Delete</a>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    } else {
+                    %>
+                    <tr>
+                        <td colspan="5" class="message">Users Not Found</td>
+                    </tr>
+                    <%
+                    }
+                    %>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function confirmDelete(userId) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                window.location.href = "/admin/delete-user?id=" + userId;
+            }
+        }
+    </script>
+</body>

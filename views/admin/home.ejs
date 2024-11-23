@@ -1,0 +1,23 @@
+<body>
+    <div class="admin-home-container">
+        <h2>Welcome, <%= admin.name %></h2>
+        <a href="/admin/dashboard" class="dashboard-link">Go to Dashboard</a>
+
+        <div class="user-info">
+            <img src="/userImages/<%= admin.image %>" alt="<%= admin.image %>" class="admin-image">
+            <table class="info-table">
+                <tr>
+                    <td>Email:</td>
+                    <td><%= admin.email %></td>
+                </tr>
+                <tr>
+                    <td>Mobile:</td>
+                    <td><%= admin.mobile %></td>
+                </tr>
+            </table>
+        </div>
+
+        <a href="/admin/logout" class="logout-button">Logout</a>
+    </div>
+    <link rel="stylesheet" href="/css/adminHome.css">
+</body>

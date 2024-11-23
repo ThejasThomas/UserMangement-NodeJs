@@ -1,0 +1,22 @@
+<body>
+    <div class="form-container">
+        <h1>Add New User</h1>
+        
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="text" name="mno" placeholder="Enter Mobile" required>
+            <input type="file" name="image" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <input type="submit" value="Add User">
+        </form>
+
+        <% if (typeof message !== 'undefined') { %>
+            <p class="error-message"><%= message %></p>
+        <% } %>
+        
+        <a href="/admin/dashboard" class="back-link">Go Back</a>
+    </div>
+
+    <link rel="stylesheet" href="/css/addUser.css">
+</body>

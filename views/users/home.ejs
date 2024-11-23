@@ -1,0 +1,22 @@
+<body>
+    <div class="home-container">
+        <h1>Welcome to Home</h1>
+        <h3>Welcome, <%= user.name %></h3>
+        
+        <div class="user-info">
+            <img src="/userImages/<%= user.image %>" alt="User Image" class="user-image">
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td><%= user.email %></td>
+                </tr>
+                <tr>
+                    <td>Mobile:</td>
+                    <td><%= user.mobile %></td>
+                </tr>
+            </table>
+        </div>
+
+        <a href="/logout" class="logout-button">Logout</a>
+    </div>
+</body>

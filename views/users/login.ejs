@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Log In</h1>
+
+        <% if(typeof message !=='undefined'){ %>
+            <h4 class="message"><%= message %></h4>
+        <% } %>
+        
+        <% if(typeof error !=='undefined'){ %>
+            <h4 class="error"><%= error.message %></h4>
+        <% } %>
+
+        <form action="/login" method="post">
+            <input type="email" name="email" placeholder="Enter email" required>
+            <input type="password" name="password" placeholder="Enter password" required>
+            <input type="submit" value="Login">
+            <a href="/register" class="btn">Sign Up</a>
+        </form>
+    </div>
+    <script>
+        if (window.history.replaceState) {
+            const url = new URL(window.location);
+            url.searchParams.delete('message'); 
+            window.history.replaceState(null, '', url);
+        }
+</script>
+</body>
+
+</html>
